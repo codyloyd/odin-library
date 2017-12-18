@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<style>
+  :root {
+    font-size: 16px;
+    font-family: Sans-serif;
+    --white: #fff;
+  }
+  #container {
+    margin: 1rem auto;
+    max-width: 50rem;
+  }
+  h1 {
+    margin: 1rem;
+    display: inline-block;
+  }
+  button {
+    display: inline-block;
+  }
+  .card {
+    padding: 1rem;
+    margin: 1rem;
+    border: 1px solid #ccc;
+    max-width: 50rem;
+    box-shadow: 3px 2px 6px 0 rgba(0,0,0,.1);
+  }
+  #new-book-form {
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    right: 0;
+    box-shadow: 3px 2px 11px 2px rgba(0,0,0,.2);
+    padding: 1rem;
+    max-width: 35rem;
+    background: var(--white);
+    display: none;
+  }
+  #new-book-form.visible {
+    display: block;
+  }
+  input {
+    display: block;
+  }
+</style>
+<body>
+ <div id="container">
+   <h1>my library</h1>
+   <button id="new-book-button">ADD BOOK</button>
+   <div id="book-list"></div>
+ </div>
+ <div id="new-book-form">
+  <h1>add new book</h1>
+  <form id="newbook">
+    <input type="text" name="title" placeholder="title">
+    <input type="text" name="author" placeholder="author">
+    <input type="number" name="pages" placeholder="pages">
+    <input type="radio" id="read1" name="read" value="true">
+    <label for="read1">Read</label>
+    <input type="radio" id="read2" name="read" value="false">
+    <label for="read2">Not read</label>
+    <input type="submit">
+  </form>
+ </div>
+<script src="./script.js"></script>
+</body>
+</html>
+
