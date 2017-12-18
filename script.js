@@ -40,8 +40,10 @@ function createBookCard(book, index) {
   card.classList.add("card");
   card.dataset.index = index;
   card.textContent = book.info();
+
   const buttons = document.createElement("div");
   buttons.classList.add("buttons");
+
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "DELETE";
   deleteButton.style = "--button-background: var(--danger-color)";
