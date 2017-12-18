@@ -9,17 +9,30 @@
     font-size: 16px;
     font-family: Sans-serif;
     --white: #fff;
+    --primary-color: #87B38D;
+    --danger-color: #D84747;
+    --button-background: var(--primary-color);
   }
   #container {
     margin: 1rem auto;
     max-width: 50rem;
   }
-  h1 {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin: 1rem;
-    display: inline-block;
+  }
+  h1 {
+    background: var(--primary-color);
+    margin: 0;
   }
   button {
-    display: inline-block;
+    background: var(--button-background);
+    font-size: .75rem;
+    padding: .5rem 1rem;
+    margin: .125rem;
+    border: none;
   }
   .card {
     padding: 1rem;
@@ -38,31 +51,78 @@
     padding: 1rem;
     max-width: 35rem;
     background: var(--white);
-    display: none;
+    opacity: 0;
+    transform:  translateX(-50%) translateY(-100%);
+    transition: all .2s ease-in-out;
   }
   #new-book-form.visible {
-    display: block;
+    opacity: 1;
+    transform: translateX(-50%);
+    z-index: 1;
   }
   input {
     display: block;
+    border: none;
+    border-bottom: 1px solid var(--primary-color);
+    font-size: 1rem;
+    width: 80%;
+    padding: .5rem 0;
+  }
+  input[type="radio"] {
+    display: inline-block
+  }
+  input[type="submit"] {
+    background: var(--button-background);
+    font-size: .75rem;
+    padding: .5rem 1rem;
+    margin: 2rem 0;
+    width: auto;
+    border: none;
+  }
+  .radio-group {
+    margin: .5rem 0;
+  }
+  #newbook {
+    margin-top: 1.5rem;
+  }
+  .body-shader {
+    position: absolute;
+    top:0;
+    bottom:0;
+    right:0;
+    left:0;
+    background: rgba(0,0,0,0.6);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .2s ease-in-out;
+  }
+  .body-shader.visible {
+    opacity: 1;
   }
 </style>
 <body>
  <div id="container">
-   <h1>my library</h1>
-   <button id="new-book-button">ADD BOOK</button>
+   <header>
+     <h1>my library</h1>
+     <button id="new-book-button">ADD BOOK</button>
+   </header>
    <div id="book-list"></div>
  </div>
+ <div class="body-shader"></div>
  <div id="new-book-form">
   <h1>add new book</h1>
   <form id="newbook">
     <input type="text" name="title" placeholder="title">
     <input type="text" name="author" placeholder="author">
     <input type="number" name="pages" placeholder="pages">
-    <input type="radio" id="read1" name="read" value="true">
-    <label for="read1">Read</label>
-    <input type="radio" id="read2" name="read" value="false">
-    <label for="read2">Not read</label>
+    <div class="radio-group">
+      <label for="read1">Read</label>
+      <input type="radio" id="read1" name="read" value="true">
+    </div>
+    <div class="radio-group">
+      <label for="read2">Not read</label>
+      <input type="radio" id="read2" name="read" value="false">
+    </div>
     <input type="submit">
   </form>
  </div>

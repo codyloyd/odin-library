@@ -26,7 +26,7 @@ function removeBookFromLibrary(index) {
 }
 
 addBookToLibrary(new Book("The Hobbit", "J.R.R Tolkien", 295, false));
-addBookToLibrary(new Book("Yo Momma", "My daddy", 295, false));
+addBookToLibrary(new Book("American Gods", "Neil Gaiman", 545, true));
 
 function renderLibrary() {
   const bookList = document.querySelector("#book-list");
@@ -40,14 +40,16 @@ function createBookCard(book, index) {
   card.classList.add("card");
   card.dataset.index = index;
   card.textContent = book.info();
-
+  const buttons = document.createElement("div");
+  buttons.classList.add("buttons");
   const deleteButton = document.createElement("button");
-  deleteButton.textContent = "delete book";
+  deleteButton.textContent = "DELETE";
+  deleteButton.style = "--button-background: var(--danger-color)";
   deleteButton.onclick = () => {
     removeBookFromLibrary(index);
     renderLibrary();
   };
-  card.appendChild(deleteButton);
+  buttons.appendChild(deleteButton);
 
   const readButton = document.createElement("button");
   readButton.textContent = book.read ? "I didn't read it!" : "I read it!";
@@ -55,7 +57,9 @@ function createBookCard(book, index) {
     book.toggleRead();
     renderLibrary();
   };
-  card.appendChild(readButton);
+  buttons.appendChild(readButton);
+
+  card.appendChild(buttons);
 
   return card;
 }
@@ -82,8 +86,9 @@ addBookButton.onclick = toggleNewBookForm;
 
 function toggleNewBookForm() {
   const formComponent = document.querySelector("#new-book-form");
-  console.log(formComponent);
+  const shader = document.querySelector(".body-shader");
   formComponent.classList.toggle("visible");
+  shader.classList.toggle("visible");
 }
 
 renderLibrary();
