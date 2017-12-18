@@ -46,7 +46,7 @@ function createBookCard(book, index) {
 
   const deleteButton = document.createElement("button");
   deleteButton.textContent = "DELETE";
-  deleteButton.style = "--button-background: var(--danger-color)";
+  deleteButton.classList.add("red");
   deleteButton.onclick = () => {
     removeBookFromLibrary(index);
     renderLibrary();
@@ -68,6 +68,7 @@ function createBookCard(book, index) {
 
 const form = document.querySelector("#newbook");
 form.onsubmit = function(e) {
+  console.log(e);
   e.preventDefault();
   const { title, author, pages, read } = form;
   console.log(read.value);
@@ -86,11 +87,15 @@ form.onsubmit = function(e) {
 const addBookButton = document.querySelector("#new-book-button");
 addBookButton.onclick = toggleNewBookForm;
 
+const cancelButton = document.querySelector("#cancelForm");
+cancelButton.onclick = toggleNewBookForm;
+
 function toggleNewBookForm() {
   const formComponent = document.querySelector("#new-book-form");
   const shader = document.querySelector(".body-shader");
   formComponent.classList.toggle("visible");
   shader.classList.toggle("visible");
+  shader.onclick = toggleNewBookForm;
 }
 
 renderLibrary();

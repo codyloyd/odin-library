@@ -72,6 +72,7 @@
     display: inline-block
   }
   input[type="submit"] {
+    display: inline-block;
     background: var(--button-background);
     font-size: .75rem;
     padding: .5rem 1rem;
@@ -98,6 +99,10 @@
   }
   .body-shader.visible {
     opacity: 1;
+    pointer-events: auto;
+  }
+  .red {
+    background: var(--danger-color);
   }
 </style>
 <body>
@@ -124,6 +129,7 @@
       <input type="radio" id="read2" name="read" value="false">
     </div>
     <input type="submit">
+    <button type="button" class="red" id="cancelForm">Cancel</button>
   </form>
  </div>
 <script src="./script.js"></script>
